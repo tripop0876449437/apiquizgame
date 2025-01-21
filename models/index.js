@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
+// เชื่อมต่อกับฐานข้อมูล
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
@@ -11,14 +12,13 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   },
 });
 
-// ตรวจสอบว่าฐานข้อมูลสามารถเชื่อมต่อได้
-sequelize
-  .authenticate()
+// Sync ตาราง
+sequelize.sync({ alter: true }) // สร้างหรืออัปเดตตาราง (ไม่ลบข้อมูลเก่า)
   .then(() => {
-    console.log('Database connected');
+    console.log('All tables synced successfully');
   })
   .catch((err) => {
-    console.error('Unable to connect to the database:', err);
+    console.error('Error syncing tables:', err);
   });
 
-module.exports = sequelize; // ต้องแน่ใจว่าคุณส่งออก sequelize
+module.exports = sequelize;

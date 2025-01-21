@@ -12,17 +12,38 @@ router.post('/register', async (req, res) => {
   const { name, username, password } = req.body;
 
   try {
+    // แฮชรหัสผ่าน
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // สร้างผู้ใช้ใหม่
     const newUser = await User.create({
       name,
       username,
       password: hashedPassword,
     });
 
-    res.status(201).json({ message: 'User registered successfully', user: newUser });
+    // ส่งข้อความตอบกลับเมื่อสำเร็จ
+    res.status(201).json({
+      message: 'User registered successfully',
+      user: {
+        id: newUser.id,
+        name: newUser.name,
+        username: newUser.username,
+      },
+    });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    // ตรวจสอบ Unique Constraint Error
+    if (error.name === 'SequelizeUniqueConstraintError') {
+      return res.status(400).json({
+        error: 'Username already exists', // ข้อความแจ้งเตือน
+      });
+    }
+
+    // ข้อผิดพลาดอื่น ๆ
+    res.status(500).json({
+      error: 'An unexpected error occurred',
+      details: error.message,
+    });
   }
 });
 
@@ -43,7 +64,11 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Invalid password' });
     }
 
-    const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(
+      { id: user.id, username: user.username }, 
+      JWT_SECRET, 
+      { expiresIn: '1h' }
+    );
 
     res.json({ message: 'Login successful', token });
   } catch (error) {
