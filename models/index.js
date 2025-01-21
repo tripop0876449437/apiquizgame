@@ -7,12 +7,7 @@ console.log('Database URL:', process.env.DATABASE_URL);
 // เชื่อมต่อกับฐานข้อมูล
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false, // ยอมรับการเชื่อมต่อแบบไม่มีใบรับรอง
-    },
-  },
+  logging: false, // ปิดการแสดง Query Logs (ถ้าไม่ต้องการเห็นใน Console)
 });
 
 // Debug Log: ทดสอบการเชื่อมต่อ
