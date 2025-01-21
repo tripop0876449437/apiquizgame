@@ -3,11 +3,22 @@ const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cors = require("cors");
 
 // Configurations
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
+
+// CORS Configuration
+const corsConfig = {
+  origin: "*", // เปิดใช้งานสำหรับทุกโดเมน (เปลี่ยนเป็นโดเมนเฉพาะใน Production)
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
+
+app.options("", cors(corsConfig));
+app.use(cors(corsConfig)); // เปิดใช้งาน CORS
 
 // Middleware
 app.use(express.json());
