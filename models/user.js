@@ -1,15 +1,19 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('./index');
+const sequelize = require('./index'); // นำเข้า sequelize instance จาก index.js
 
 const User = sequelize.define('User', {
-  username: {
+  name: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  email: {
+  username: {
+    type: DataTypes.STRING,
+    unique: true,
+    allowNull: false,
+  },
+  password: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
 });
 
