@@ -1,11 +1,5 @@
-try {
-  require('pg'); // ลองโหลด pg
-  console.log('pg module loaded successfully');
-} catch (err) {
-  console.error('Error loading pg module:', err);
-}
+const app = require('../app'); // นำเข้า Express App
 
-const serverless = require('serverless-http');
-const app = require('../app');
-
-module.exports = serverless(app);
+module.exports = (req, res) => {
+  app(req, res); // ส่ง Express App ให้กับ Serverless Environment
+};
