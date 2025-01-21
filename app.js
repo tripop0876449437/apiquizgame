@@ -10,6 +10,10 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.send('Hello from Vercel!');
+});
+
 // Routes
 app.use('/auth', require('./routes/auth'));
 app.use('/users', require('./routes/users'));
