@@ -129,6 +129,10 @@ app.get('/', async (req, res) => {
   res.status(200).json('Hello World' );
 });
 
+app.get('/debug', (req, res) => {
+  res.json({ nodeVersion: process.version });
+});
+
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
