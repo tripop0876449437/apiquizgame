@@ -3,6 +3,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { Pool } = require('pg');
+const cors = require('cors'); // Import CORS
 
 // Configurations
 const app = express();
@@ -10,6 +11,7 @@ const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
 
 // Middleware
+app.use(cors()); // ใช้งาน CORS
 app.use(express.json());
 
 // PostgreSQL Connection
