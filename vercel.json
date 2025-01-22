@@ -5,10 +5,5 @@
   ],
   "routes": [
     { "src": "/api/(.*)", "dest": "app.js", "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"] }
-  ],
-  "functions": {
-    "api/*": {
-      "runtime": "nodejs22.x"
-    }
-  }
+  ]
 }
