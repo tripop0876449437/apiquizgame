@@ -8,6 +8,10 @@
     "dev": "nodemon server",
     "postinstall": "npm install --no-save pg"
   },
+  "engines": {
+    "node": ">=18.x",
+    "npm": ">=9.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
