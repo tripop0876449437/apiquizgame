@@ -6,7 +6,7 @@ const { Pool } = require('pg');
 
 // Configurations
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const JWT_SECRET = process.env.JWT_SECRET || 'default_secret_key';
 
 // Middleware
@@ -123,6 +123,10 @@ app.get('/users', async (req, res) => {
   } catch (error) {
     res.status(403).json({ error: 'Invalid token' });
   }
+});
+
+app.get('/', async (req, res) => {
+  res.status(200).json('Hello World' );
 });
 
 // Start Server
