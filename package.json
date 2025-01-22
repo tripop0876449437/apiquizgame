@@ -1,16 +1,14 @@
 {
   "name": "bequizgame",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
-    "dev": "nodemon server",
-    "postinstall": "npm install --no-save pg"
+    "start": "node app.js",
+    "dev": "nodemon app.js"
   },
   "engines": {
-    "node": ">=18.x",
-    "npm": ">=9.x"
+    "node": "22.x"
   },
   "keywords": [],
   "author": "",
@@ -27,7 +25,7 @@
     "mysql2": "^3.12.0",
     "passport": "^0.7.0",
     "passport-facebook": "^3.0.0",
-    "pg": "^8.7.3",
+    "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5",
     "serverless-http": "^3.2.0"
