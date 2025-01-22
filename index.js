@@ -24,7 +24,7 @@ app.use(cors(corsConfig)); // เปิดใช้งาน CORS
 app.use(express.json());
 
 // Database Connection
-const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://guzhxqmu:zGlHhRql1UTkd8skWKtYECZ3wN2AQoqj@arjuna.db.elephantsql.com/guzhxqmu', {
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
     ssl: {
